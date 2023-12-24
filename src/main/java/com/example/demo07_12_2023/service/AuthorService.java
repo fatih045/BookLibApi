@@ -42,7 +42,10 @@ public class AuthorService {
 
         Authors existing = authorsRepository.findById(authors.getAuthorId()).orElse(null);
 
-        existing.setAuthorsName(authors.getAuthorsName());
+
+        if (existing != null) {
+            existing.setAuthorsName(authors.getAuthorsName());
+        }
 
         return existing;
 

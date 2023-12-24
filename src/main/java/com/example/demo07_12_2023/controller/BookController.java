@@ -1,8 +1,10 @@
 package com.example.demo07_12_2023.controller;
 
 import com.example.demo07_12_2023.model.Book;
+import com.example.demo07_12_2023.model.User;
 import com.example.demo07_12_2023.service.BookService;
 import lombok.Getter;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -57,7 +59,17 @@ public class BookController {
         return   bookService.updateBook(book);
     }
 
+    @GetMapping("book/users/{id}")
+    public ResponseEntity <List<User>> getUserByBook(@PathVariable int id){
 
+        List<User> userList =bookService.getUserByBookId(id);
+
+        if (userList.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return  ResponseEntity.ok(userList);
+
+    }
 
 
 

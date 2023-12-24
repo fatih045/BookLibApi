@@ -1,5 +1,6 @@
 package com.example.demo07_12_2023.controller;
 
+import com.example.demo07_12_2023.UserDto;
 import com.example.demo07_12_2023.model.Book;
 import com.example.demo07_12_2023.model.User;
 import com.example.demo07_12_2023.service.UserService;
@@ -68,6 +69,14 @@ public class UserController {
 
         return ResponseEntity.ok(userBooks);
     }
+
+    @GetMapping("/number/{id}")
+    public int numbook(@PathVariable int id){
+
+        return  userService.getUserBookNumber(id);
+    }
+
+
 
 
 }

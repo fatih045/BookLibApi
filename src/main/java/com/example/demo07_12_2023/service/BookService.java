@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookService {
@@ -56,16 +57,19 @@ public class BookService {
         return  bookRepository.save(existingBook);
     }
 
-//    public List<User> getUsersByBookName(String bookName) {
-//        Book books = bookRepository.findByBookName(bookName);
-//
-//
-//        if (books != null) {
-//            return books.getUsers();
-//        } else
-//            return  Collections.emptyList();
-//    }
 
+public List<User> getUserByBookId(Integer id){
+
+        Optional<Book> book =bookRepository.findById(id);
+
+         if (book.isPresent()){
+             Book book1 =book.get();
+             return book1.getUsers();
+         }
+         else
+              return  Collections.emptyList();
+
+}
 
 
 

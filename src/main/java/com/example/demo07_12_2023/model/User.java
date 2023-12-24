@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +20,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 @Getter
-            @Setter
+    @Setter
      int id;
 
     @Getter
@@ -40,10 +41,12 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
-    @JsonIgnore
+   // @JsonIgnore
     @Getter
     @Setter
-    @ManyToMany
-    private List<Book> books;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Book> books ;
+
+    ;
 
 }

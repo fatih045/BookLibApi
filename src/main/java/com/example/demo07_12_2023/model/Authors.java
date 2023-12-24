@@ -25,8 +25,8 @@ public class Authors {
     @Column(name = "authors_name")
     private  String AuthorsName;
 
-    @JsonIgnore
-    @ManyToMany
+  //  @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "author_book",
             joinColumns = @JoinColumn(name = "author_id"),
@@ -36,7 +36,7 @@ public class Authors {
     @Getter
     @Setter
     private List<Book> books;
-    // Getters and setters, constructors, vb.
+
 
 
 

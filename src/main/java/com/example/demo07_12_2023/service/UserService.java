@@ -1,16 +1,15 @@
 package com.example.demo07_12_2023.service;
 
 
+import com.example.demo07_12_2023.UserMapper;
 import com.example.demo07_12_2023.model.Book;
 import com.example.demo07_12_2023.model.User;
 import com.example.demo07_12_2023.repository.UserRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class UserService {
@@ -19,9 +18,13 @@ public class UserService {
     private final UserRepository userRepository;
 
 
-    public UserService (UserRepository userRepository) {
+
+    public UserService (UserRepository userRepository, UserMapper userMapper) {
         this.userRepository=userRepository;
+
     }
+
+
 
 
 
@@ -56,6 +59,12 @@ public class UserService {
             // Kullanıcı bulunamadı veya kitapları yoksa boş liste dönebilirsiniz.
             return Collections.emptyList();
         }
+    }
+
+
+    public int getUserBookNumber (int id) {
+
+      return   getUserBooks(id).size();
     }
 
     public User updateUser(User user) {
