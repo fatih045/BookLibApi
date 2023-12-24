@@ -23,6 +23,10 @@ public class UserService {
         this.userRepository=userRepository;
 
     }
+    public List <User> denek(){
+
+        return userRepository.findAll();
+    }
 
 
 
